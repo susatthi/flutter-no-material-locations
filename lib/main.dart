@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  // runApp(const MyApp());
-  runApp(const MaterialApp(home: MyApp())); //　MaterialAppで先にラップする
+  runApp(const MyApp());
+  // runApp(const MaterialApp(home: MyApp())); //　MaterialAppで先にラップする
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyPage(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class MyPage extends StatefulWidget {
+  const MyPage({super.key});
+
+  @override
+  State<MyPage> createState() => _MyPageState();
+}
+
+class _MyPageState extends State<MyPage> {
   @override
   void initState() {
     super.initState();
@@ -29,12 +41,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: MyWidget(),
-        ),
+    return const Scaffold(
+      body: Center(
+        child: MyWidget(),
       ),
     );
   }
