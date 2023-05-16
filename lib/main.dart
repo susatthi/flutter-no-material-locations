@@ -17,30 +17,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyPage extends StatefulWidget {
+class MyPage extends StatelessWidget {
   const MyPage({super.key});
 
   @override
-  State<MyPage> createState() => _MyPageState();
-}
-
-class _MyPageState extends State<MyPage> {
-  @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Future.delayed(const Duration(seconds: 3));
-      if (mounted) {
+      if (context.mounted) {
         showDialog<void>(
           context: context,
           builder: (context) => const SampleDialog(),
         );
       }
     });
-  }
 
-  @override
-  Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
         child: MyWidget(),
